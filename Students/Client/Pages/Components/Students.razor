@@ -1,0 +1,17 @@
+﻿@using Data
+@inherits StudentModel
+<h3>Students</h3>
+
+
+<EditForm Model="student" OnValidSubmit="AddTask">
+	<DataAnnotationsValidator></DataAnnotationsValidator>
+	<ValidationSummary></ValidationSummary>
+	<InputNumber @bind-Value="student.StudentId"/>
+	<InputText @bind-Value="student.StudentName"/>
+	<InputText @bind-Value="student.StudentLast"/>
+	<InputNumber @bind-Value="student.StudentFaults"/>
+	<InputNumber @bind-Value="student.StudentMark"/>
+	<button type="submit" class="btn btn-primary">ADD</button>
+</EditForm>
+
+
