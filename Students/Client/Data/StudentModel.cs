@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace Students.Client.Data
+namespace Person.Client.Data
 {
     public class StudentModel
     {

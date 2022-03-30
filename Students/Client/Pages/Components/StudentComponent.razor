@@ -1,0 +1,52 @@
+﻿@using Data
+@namespace Person.Client.Pages.Components
+@page "/student"
+<h3>Students</h3>
+
+
+<EditForm Model="student" OnValidSubmit="AddTask">
+	<DataAnnotationsValidator></DataAnnotationsValidator>
+	<ValidationSummary></ValidationSummary>
+	<InputNumber @bind-Value="student.StudentId"/>
+	<InputText @bind-Value="student.StudentName"/>
+	<InputText @bind-Value="student.StudentLast"/>
+	<InputNumber @bind-Value="student.StudentFaults"/>
+	<InputNumber @bind-Value="student.StudentMark"/>
+	<button type="submit" class="btn btn-primary">ADD</button>
+</EditForm>
+
+<table class="table">
+	<thead>
+    <tr>
+      <th scope="col">ID</th>
+      <th scope="col">NAME</th>
+      <th scope="col">LASTNAME</th>
+      <th scope="col">FAULTS</th>
+      <th scope="col">MARK</th>
+    </tr>
+
+@foreach(var i in studentList){
+
+
+
+
+
+	<tr>
+		<td>@i.StudentId</td>
+		<td>@i.StudentName</td>
+		<td>@i.StudentLast</td>
+		<td>@i.StudentFaults</td>
+		@if (@i.StudentMark<5)
+	 {
+		 <td style="background-color: red; color: white">@i.StudentMark</td>
+	 }else{
+		 <td style="background-color: green; color: white">@i.StudentMark</td>
+	 }
+		
+	</tr>
+  
+}
+	</thead>
+</table>
+
+

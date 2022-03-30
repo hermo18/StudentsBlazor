@@ -1,0 +1,27 @@
+﻿@page "/csv"
+@namespace Csv.Client.Pages.Components
+<h3>CsvReader</h3>
+
+<InputFile OnChange="@OnInputFileChange"></InputFile>
+<button type="submit" class="btn btn-primary">ADD</button>
+
+<table class="table">
+	<thead>
+    <tr>
+      <th scope="col">ID</th>
+      <th scope="col">NAME</th>
+      <th scope="col">LASTNAME</th>
+      <th scope="col">FAULTS</th>
+      <th scope="col">MARK</th>
+    </tr>
+    @csv
+@foreach(var i in csv){
+	<tr>
+		<td>@i[0]</td>		
+	</tr>
+  
+}
+	</thead>
+</table>
+
+

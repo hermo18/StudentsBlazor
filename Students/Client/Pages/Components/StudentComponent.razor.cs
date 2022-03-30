@@ -1,8 +1,8 @@
-﻿using Students.Client.Data;
+﻿using Person.Client.Data;
 
-namespace Students.Client.Pages.Components
+namespace Person.Client.Pages.Components
 {
-    public partial class Students
+    public partial class StudentComponent 
     {
 
 		protected List<StudentModel> studentList = new List<StudentModel>();
