@@ -14,5 +14,27 @@ namespace Person.Client.Pages.Components
 			studentList.Add(student);
 			student = new StudentModel();
 		}
+
+		private int st;
+		private int newMark;
+
+		public void Modify()
+		{
+			foreach (var i in studentList)
+			{
+				var selectedStudent = studentList.Where(s => s.StudentId == st).FirstOrDefault();
+				if(selectedStudent != null)
+                {
+					selectedStudent.StudentMark = newMark;
+                }
+                else
+                {
+					Console.WriteLine("NO ID DETECTED");
+				}
+				
+				
+			}
+
+		}
 	}
 }

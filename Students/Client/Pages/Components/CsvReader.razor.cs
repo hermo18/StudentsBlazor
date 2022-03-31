@@ -1,46 +1,41 @@
-﻿using System.Text.RegularExpressions;
-using Microsoft.AspNetCore.Components.Forms;
+﻿using Microsoft.AspNetCore.Components.Forms;
+using Students.Client.Data;
 
-namespace Csv.Client.Pages.Components
+namespace Csv.Client.Pages.Components;
+
+public partial class CsvReader
 {
-    public partial class CsvReader
+    
+    public async Task OnInputFileChange(InputFileChangeEventArgs e)
     {
-        public static List<string[]> csv = new List<string[]>();
-        public async Task OnInputFileChange(InputFileChangeEventArgs e)
+        List<CsvReader> listCsv = new List<CsvReader>();
+        var singleFile = e.File;
+
+
+        var stream = singleFile.OpenReadStream();
+
+        MemoryStream ms = new MemoryStream();
+        await stream.CopyToAsync(ms);
+        stream.Close();
+        var outputFileString = System.Text.Encoding.UTF8.GetString(ms.ToArray());
+
+        List<string> csvRows = outputFileString.Split("\n").ToList();
+
+        for (int i = 0; i < csvRows.Count; i++)
         {
-            var singleFile = e.File;
-
-           
-                var stream = singleFile.OpenReadStream();
-                
-                MemoryStream ms = new MemoryStream();
-                await stream.CopyToAsync(ms);
-                stream.Close();
-                var outputFileString = System.Text.Encoding.UTF8.GetString(ms.ToArray());
-
-                foreach (var item in outputFileString.Split(Environment.NewLine))
-                {
-                    csv.Add(SplitCSV(item.ToString()));
-                }
-
-            
-        }
-
-        private string[] SplitCSV(string input)
-        {
-            //Excludes commas within quotes  
-            Regex csvSplit = new Regex("(?:^|,)(\"(?:[^\"]+|\"\")*\"|[^,]*)", RegexOptions.Compiled);
-            List<string> list = new List<string>();
-            string curr = null;
-            foreach (Match match in csvSplit.Matches(input))
+            if (i > 0)
             {
-                curr = match.Value;
-                if (0 == curr.Length) list.Add("");
+                List<string> csvStringList = csvRows[i].Split(";").ToList();
+                prueba csvFinal = new prueba(
+                    Int32.Parse(csvStringList[0]),
+                    csvStringList[1],
+                    csvStringList[2],
+                    csvStringList[3],
+                    csvStringList[4]
+                    );
 
-                list.Add(curr.TrimStart(','));
+                listCsv.Add(csvFinal);
             }
-
-            return list.ToArray();
         }
     }
 }

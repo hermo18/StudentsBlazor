@@ -3,17 +3,28 @@
 @page "/student"
 <h3>Students</h3>
 
-
+<h4>ADD STUDENT</h4>
 <EditForm Model="student" OnValidSubmit="AddTask">
 	<DataAnnotationsValidator></DataAnnotationsValidator>
 	<ValidationSummary></ValidationSummary>
-	<InputNumber @bind-Value="student.StudentId"/>
-	<InputText @bind-Value="student.StudentName"/>
-	<InputText @bind-Value="student.StudentLast"/>
-	<InputNumber @bind-Value="student.StudentFaults"/>
-	<InputNumber @bind-Value="student.StudentMark"/>
+	ID:<InputNumber @bind-Value="student.StudentId"/>
+	NAME:<InputText @bind-Value="student.StudentName"/>
+	LAST NAME:<InputText @bind-Value="student.StudentLast"/>
+	FAULTS:<InputNumber @bind-Value="student.StudentFaults"/>
+	MARK:<InputNumber @bind-Value="student.StudentMark"/>
 	<button type="submit" class="btn btn-primary">ADD</button>
 </EditForm>
+<br />
+<br />
+
+
+<h4>MODIFY MARK</h4>
+ID:<input type="number" @bind="@st"/>
+NEW MARK:<input type="number" @bind="@newMark"/> 
+<button @onclick="Modify">MODIFY</button>
+
+<br />
+<br />
 
 <table class="table">
 	<thead>
@@ -26,10 +37,7 @@
     </tr>
 
 @foreach(var i in studentList){
-
-
-
-
+		
 
 	<tr>
 		<td>@i.StudentId</td>
